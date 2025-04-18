@@ -1,4 +1,15 @@
+    
+    .modo-toggle img {
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
 
+    .modo-toggle img:hover {
+      transform: scale(1.1);
+    }
+    
     body {
       font-family: sans-serif;
       color: white;
