@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LEGO</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="css/estilos.css"/>
+
+  <style>
+    .modo-toggle img {
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .modo-toggle img:hover {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">DEADXULE
+    
+        <img src="IMAGENES/dead-pool.png" alt="Logo" width="40" height="40" class="me-2">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <!-- Botón con imagen para modo día/noche -->
+            <a class="nav-link modo-toggle" href="#" title="Cambiar modo" onclick="toggleModo()">
+              <img src="IMAGENES/dia.png" alt="Modo Día/Noche">
+            </a>
+          </li>
+        </ul>
+
+        <!-- Buscador -->
+        <form class="d-flex" role="search" onsubmit="buscarLego(event)">
+          <input id="busqueda" class="form-control me-2" type="search" placeholder="Buscar por código..." aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Buscar</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container center mb-4">
+    <h2>Más populares</h2>
+    <div class="carousel d-flex justify-content-center flex-wrap gap-3">
+      <div class="card">
+        <a href="hf.html">
+          <img src="IMAGENES/von nebula.jpg" alt="Hero Factory">
+          <span>Hero Factory</span>
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="sw.html">
+          <img src="IMAGENES/x wing.webp" alt="Star Wars">
+          <span>Star Wars</span>
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="city.html">
+          <img src="IMAGENES/estacion de policia.jpg" alt="City">
+          <span>City</span>
+        </a>
+      </div>
+
+      <div class="card">
+        <a href="chima.html">
+          <img src="IMAGENES/gorila.png" alt="Chima">
+          <span>Chima</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <!-- Footer con borde ondulado -->
+<div class="footer-wave">
+    <svg viewBox="0 0 1200 100" preserveAspectRatio="none">
+      <path d="M0,0 C300,100 900,0 1200,100 L1200,0 L0,0 Z" class="wave-path"></path>
+    </svg>
+  </div>
+  
+  <footer class="footer-custom text-white py-4">
+    <div class="container">
+      <div class="row text-center text-md-start">
+        <div class="col-md-4 mb-3">
+          <h5 class="fw-bold">DEADXULE</h5>
+          <p>Tu portal LEGO favorito con las mejores colecciones y sets más populares.</p>
+          <p>Armar Legos eimpre es un buen panorama</p> 
+        </div>
+        <div class="col-md-4 mb-3">
+          <h5 class="fw-bold">Navegación</h5>
+          <ul class="list-unstyled">
+            <li><a href="#" class="footer-link">Inicio</a></li>
+            <li><a href="sw.html" class="footer-link">Star Wars</a></li>
+            <li><a href="hf.html" class="footer-link">Hero Factory</a></li>
+            <li><a href="city.html" class="footer-link">City</a></li>
+            <li><a href="chima.html" class="footer-link">Chima</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4 mb-3">
+          <h5 class="fw-bold">Contacto</h5>
+          <a href="#" class="me-3 footer-link">Facebook</a>
+          <a href="#" class="me-3 footer-link">Instagram</a>
+          <a href="#" class="footer-link">Twitter</a>
+        </div>
+      </div>
+      <div class="text-center mt-4">
+        <p class="mb-0">&copy; 2025 DEADXULE | Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+  
+  
+  <script>
+    function toggleModo() {
+      document.body.classList.toggle('noche');
+    }
+
+    function buscarLego(event) {
+      event.preventDefault(); // Evita el envío del formulario
+
+      const codigo = document.getElementById("busqueda").value.trim();
+
+      const baseDatos = {
+        "75257": { tipo: "sw", nombre: "halcon" },
+        "75370": { tipo: "sw", nombre: "estrella" },
+        "75054": { tipo: "sw", nombre: "at" },
+        "7157": { tipo: "hf", nombre: "thunder" },
+        "7147": { tipo: "hf", nombre: "xplode" },
+        "2235": { tipo: "hf", nombre: "fire" },
+
+        "7744": { tipo: "city", nombre: "estacion de policia" },
+        "7207": { tipo: "city", nombre: "barco de bomberos" },
+        "7632": { tipo: "city", nombre: "grua" },
+        "70202": { tipo: "chima", nombre: "Gorzan" },
+        "70204": { tipo: "chima", nombre: "Worriz" },
+        "70205": { tipo: "chima", nombre: "Razar" }
+      };
+
+      if (baseDatos[codigo]) {
+        const { tipo } = baseDatos[codigo];
+        window.location.href = `${tipo}.html?modelo=${codigo}`;
+      } else {
+        alert("No se encontró ningún set con ese código.");
+      }
+    }
+  </script>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
